@@ -4,9 +4,16 @@ export default class Login extends Component {
     state = {
         email: "",
         password: "",
-    }
+    };
+
+    handleLogin = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value,
+        });
+    };
     
     render() {
+        const { email, password } = this.state;
         return (
             <div className="form-body">
                 <main className="form-signin">
@@ -23,8 +30,8 @@ export default class Login extends Component {
                             required
                             autoFocus
                             name="email"
-                            value={this.state.email}
-                            onChange={this}
+                            value={email}
+                            onChange={this.handleLogin}
                         />
                         <label htmlFor="inputPassword" className="visually-hidden">
                             Password
@@ -37,8 +44,8 @@ export default class Login extends Component {
                             placeholder="Password"
                             required
                             name="password"
-                            value={this.state.password}
-                            onChange={this}
+                            value={password}
+                            onChange={this.handleLogin}
                         />
                         <button className="w-100 btn btn-lg btn-primary" type="submit">
                             Login
