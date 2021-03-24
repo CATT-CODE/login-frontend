@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Link } from "react-router-dom";
 import "./Navbar.css";
 
-export default function Navbar() {
+export default function Navbar(props) {
     return (
         <header className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-body border-bottom shadow-sm">
             <p className="h5 my-0 me-md-auto fw-normal">
@@ -20,17 +20,22 @@ export default function Navbar() {
                     Home
                 </NavLink>
             </nav>
+            {/* {props.user ? (
+
+            ) : (
+
+            )} */}
             <>
                 <NavLink
                     className="btn btn-outline-primary"
-                    activeStyle={{ color: "yellow" }}
+                    activeClassName="active-class-style"
                     to="/sign-up"
                     >
                     Sign Up
                 </NavLink>
                 <NavLink
                     className="btn btn-outline-primary"
-                    activeStyle={{ color: "yellow" }}
+                    activeClassName="active-class-style"
                     to="/login"
                 >
                     Login

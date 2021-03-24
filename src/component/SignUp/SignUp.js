@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import {toast} from "react-toastify"
+import axios from "axios";
 
 import "./SignUp.css"
 
@@ -14,14 +16,58 @@ export default class SignUp extends Component {
         this.setState({
             [event.target.name]: event.target.value,
         });
+        console.log(this.state);
     };
+
+    handleOnSubmit = async (event) => {
+        event.preventDefault();
+
+        let {firstName, lastName, email, password} = this.state;
+
+        try {
+            await axios.post("http://localhost:3003/users/sign-up", {
+                firstName,
+                lastName,
+                email,
+                password
+            });
+            this.setState({
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: "",
+            });
+
+            toast.success("Winner Winner Chicken Dinner", { 
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+        } catch (e) {
+            console.log(e.response);
+            toast.error(e.response.data, { 
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+        }
+
+    }
     
     render() {
         const { firstName, lastName, email, password } = this.state;
         return (
             <div className="form-body">
                 <main className="form-signin">
-                <form onSubmit={this}>
+                <form onSubmit={this.handleOnSubmit}>
                     <h1 className="h3 mb-3 font-weight-normal">Please Sign Up</h1>
                     <label htmlFor="inputFirstName" className="sr-only">
                         First Name
@@ -55,7 +101,7 @@ export default class SignUp extends Component {
                         pattern="[A-Za-z]*"
                     />
                     <label htmlFor="inputEmail" className="visually-hidden">
-                        Email address
+                        Email address 
                     </label>
                     <input
                         type="email"
@@ -83,7 +129,7 @@ export default class SignUp extends Component {
                         required
                     />
 
-                    <button className="btn btn-lg btn-primary btn-block" type="submit" disabled={this}>
+                    <button className="btn btn-lg btn-primary btn-block" type="submit" >
                         Register
                     </button>
                 </form>
