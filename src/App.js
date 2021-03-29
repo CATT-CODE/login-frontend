@@ -19,10 +19,10 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <ToastContainer/>
-        <MainRouter user={this.state.user}/>
-      </div>
+        <MainRouter user={this.state.user} handleUserLogin={this.handleUserLogin}/>
+      </>
     )
   }
 }

@@ -20,27 +20,41 @@ export default function Navbar(props) {
                     Home
                 </NavLink>
             </nav>
-            {/* {props.user ? (
-
-            ) : (
-
-            )} */}
-            <>
-                <NavLink
-                    className="btn btn-outline-primary"
-                    activeClassName="active-class-style"
-                    to="/sign-up"
+            {props.user ? (
+                <>
+                    <NavLink
+                        className="btn btn-outline-primary"
+                        activeStyle={{ color: "yellow" }}
+                        to="/profile"
                     >
-                    Sign Up
-                </NavLink>
-                <NavLink
-                    className="btn btn-outline-primary"
-                    activeClassName="active-class-style"
-                    to="/login"
-                >
-                    Login
-                </NavLink>
-            </>
+                        {props.user.email}
+                    </NavLink>
+                    <Link
+                        className="btn btn-outline-primary"
+                        to="/login"
+                        // onClick={props.handleUserLogout}
+                    >
+                        Logout
+                    </Link>
+                </>
+            ) : (
+                <>
+                    <NavLink
+                        className="btn btn-outline-primary"
+                        activeClassName="active-class-style"
+                        to="/sign-up"
+                    >
+                        Sign Up
+                    </NavLink>
+                    <NavLink
+                        className="btn btn-outline-primary"
+                        activeClassName="active-class-style"
+                        to="/login"
+                    >
+                        Login
+                    </NavLink>
+                </>
+            )}
         </header>
-    )
+    );
 }

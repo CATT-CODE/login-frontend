@@ -1,16 +1,20 @@
-import React, { Component } from 'react'
-import {toast} from "react-toastify"
+import React, { Component } from 'react';
+import {toast} from "react-toastify";
 import axios from "axios";
 
-import "./SignUp.css"
+import "./SignUp.css";
 
 export default class SignUp extends Component {
-    state = {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-    };
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+        };
+    }
 
     handleSignUp = (event) => {
         this.setState({

@@ -6,14 +6,18 @@ import Navbar from "./component/Navbar/Navbar";
 import SignUp from "./component/SignUp/SignUp";
 import Login from "./component/Login/Login";
 
-export default function MainRouter() {
+export default function MainRouter(props) {
+        console.log(props);
     return (
         <Router>
-            <Navbar/>
+            <Navbar user={props.user} />
             <Switch>
                 <Route path="/home" component={Home}/>
                 <Route path="/sign-up" component={SignUp}/>
-                <Route path="/login" component={Login}/>
+                <Route path="/login" render={(routerProps) => (
+                    <Login {...routerProps} handleUserLogin={props.handleUserLogin} />
+                  )}
+                />
             </Switch>
         </Router>
     )
